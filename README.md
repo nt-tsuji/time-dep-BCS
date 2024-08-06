@@ -14,7 +14,7 @@ where $\vec{b}_k=(-\Delta', -\Delta'', \varepsilon_k)$ is an effective magnetic 
 
 The gap function is determined self-consistently via
 
-$\Delta' + i\Delta'' = \frac{V}{N_k} \sum_k (\sigma_k^x + i\sigma_k^y)$.
+$\Delta' + i\Delta'' = \frac{V}{N_k} \sum_k (\sigma_k^1 + i\sigma_k^2)$.
 
 The code solves the time evolution of the pseudospins and gap function using the second-order implicit Runge-Kutta method.
 
