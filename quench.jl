@@ -1,4 +1,3 @@
-# one dimensional lattice, periodic boundary condition, U quench
 using LinearAlgebra, Plots
 
 Nt = 1000;
