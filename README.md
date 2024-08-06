@@ -35,3 +35,9 @@ $N_k$: Number of k points
 $t_{\rm max}$: Maximum time
 
 $N_t$: Number of time steps
+
+## References
+
+[1] Ryo Shimano, Naoto Tsuji, "Higgs mode in superconductors", Annu. Rev. Condens. Matter Phys. 11, 103 (2020).
+
+[2] Naoto Tsuji, Ippei Danshita, Shunji Tsuchiya, "Higgs and Nambu-Goldstone modes in condensed matter physics", Encyclopedia of Condensed Matter Physics (2nd ed.), Vol. 1, 174 (2024).
