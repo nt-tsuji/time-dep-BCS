@@ -1,6 +1,7 @@
 using LinearAlgebra, Plots
 
 Nt = 1000;
+tmax = 50.0;
 t_list = zeros(Float64, Nt+1);
 Δ_re = zeros(Float64, Nt+1);
 Δ_im = zeros(Float64, Nt+1);
@@ -15,7 +16,6 @@ function time_dep_BCS()
     T = 0.05;
     Nk = 200;
     dk = 2.0*π/Nk;
-    tmax = 50.0;
     dt = tmax/Nt;
     tolerance = 0.000001;
 
@@ -110,8 +110,8 @@ end
 
 time_dep_BCS()
 
-fig_Delta = plot(t_list,[Δ_re,Δ_im],xlim=(0,50),ylim=(0,4),xlabel="t",ylabel="Δ",label=["Re Δ" "Im Δ"])
-fig_E_tot = plot(t_list,E_tot,xlim=(0,50),ylim=(-1.5,-1.3),xlabel="t",ylabel="E",label="E_tot")
+fig_Delta = plot(t_list,[Δ_re,Δ_im],xlim=(0,tmax),ylim=(0,4),xlabel="t",ylabel="Δ",label=["Re Δ" "Im Δ"])
+fig_E_tot = plot(t_list,E_tot,xlim=(0,tmax),ylim=(-1.5,-1.3),xlabel="t",ylabel="E",label="E_tot")
 
 savefig(fig_Delta,"Delta.png")
 savefig(fig_E_tot,"E_tot.png")
