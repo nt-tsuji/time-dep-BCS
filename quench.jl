@@ -58,9 +58,10 @@ function time_dep_BCS()
         Δ[1] = Δ_temp;
         iter += 1;
     end
-    iter_list[1] = iter;
+    t_list[1] = 0.0;
     Δ_re[1] = real(Δ[1]);
     Δ_im[1] = imag(Δ[1]);
+    iter_list[1] = iter;
 
     # initial pseudospin configuration
     E_tot[1] = 0.0;
@@ -76,7 +77,6 @@ function time_dep_BCS()
     E_tot[1] = 2*E_tot[1]/Nk + abs2(Δ[1])/Vi;
 
     # time evolution
-    t_list[1] = 0.0;
     for it in 1:Nt
         t = it*dt;
         t_list[it+1] = t;
