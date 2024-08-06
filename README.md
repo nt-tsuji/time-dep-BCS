@@ -10,7 +10,7 @@ The equation for the time evolution is given by
 
 $\partial_t \vec{\sigma}_k = 2 \vec{b}_k \times \vec{\sigma}_k$,
 
-where $\vec{b}_k=(-\Delta', -\Delta'', \epsilon_k)$ is an effective magnetic field acting on the pseudospins, $\Delta'$ and $\Delta''$ are the real and imaginary parts of the gap function, and $\epsilon_k$ is the band dispersion.
+where $\vec{b}_k=(-\Delta', -\Delta'', \varepsilon_k)$ is an effective magnetic field acting on the pseudospins, $\Delta'$ and $\Delta''$ are the real and imaginary parts of the gap function, and $\varepsilon_k$ is the band dispersion.
 
 The gap function is determined self-consistently via
 
@@ -18,7 +18,7 @@ $\Delta' + i\Delta'' = \frac{V}{N_k} \sum_k (\sigma_k^x + i\sigma_k^y)$.
 
 The code solves the time evolution of the pseudospins and gap function using the second-order implicit Runge-Kutta method.
 
-The model is a one-dimensional tight-binding model with the dispersion $\epsilon_k=-2t_{\rm hop}\cos k$. The interaction parameter is quenched at $t=0$: $V=V_i \to V_f$. The initial condition is given by an equilibrium state with temperature $T$.
+The model is a one-dimensional tight-binding model with the dispersion $\varepsilon_k=-2t_{\rm hop}\cos k$. The interaction parameter is quenched at $t=0$: $V=V_i \to V_f$. The initial condition is given by an equilibrium state with temperature $T$.
 
 ## Parameters
 
