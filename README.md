@@ -38,6 +38,6 @@ $N_t$: Number of time steps
 
 ## References
 
-[1] R. Shimano, N. Tsuji, "Higgs mode in superconductors", [Annu. Rev. Condens. Matter Phys. 11, 103 (2020)](https://www.annualreviews.org/content/journals/10.1146/annurev-conmatphys-031119-050813) ([arXiv:1906.09401](https://arxiv.org/abs/1906.09401)).
+[1] R. Shimano, N. Tsuji, _Higgs mode in superconductors_, [Annu. Rev. Condens. Matter Phys. 11, 103 (2020)](https://www.annualreviews.org/content/journals/10.1146/annurev-conmatphys-031119-050813) ([arXiv:1906.09401](https://arxiv.org/abs/1906.09401)).
 
-[2] N. Tsuji, I. Danshita, S. Tsuchiya, "Higgs and Nambu-Goldstone modes in condensed matter physics", [Encyclopedia of Condensed Matter Physics (2nd ed.), Vol. 1, 174 (2024)](https://www.sciencedirect.com/science/article/pii/B9780323908009002560?via%3Dihub) ([arXiv:2310.17148](https://arxiv.org/abs/2310.17148)).
+[2] N. Tsuji, I. Danshita, S. Tsuchiya, _Higgs and Nambu-Goldstone modes in condensed matter physics_, [Encyclopedia of Condensed Matter Physics (2nd ed.), Vol. 1, 174 (2024)](https://www.sciencedirect.com/science/article/pii/B9780323908009002560?via%3Dihub) ([arXiv:2310.17148](https://arxiv.org/abs/2310.17148)).
