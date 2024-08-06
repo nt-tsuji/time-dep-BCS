@@ -4,9 +4,9 @@ This is a Julia source code for simulating the time-dependent BCS equation, whic
 
 The equation for the time evolution is given by
 
-$\partial_t \vec{\sigma}_k = 2 \vec{h}_k \times \vec{\sigma}_k$,
+$\partial_t \vec{\sigma}_k = 2 \vec{b}_k \times \vec{\sigma}_k$,
 
-where $\vec{h}_k=(-\Delta', -\Delta'', \epsilon_k)$, $\Delta'$ and $\Delta''$ are the real and imaginary parts of the gap function, and $\epsilon_k$ is the band dispersion.
+where $\vec{b}_k=(-\Delta', -\Delta'', \epsilon_k)$ is an effective magnetic field acting on the pseudospins, $\Delta'$ and $\Delta''$ are the real and imaginary parts of the gap function, and $\epsilon_k$ is the band dispersion.
 
 The gap function is determined self-consistently via
 
