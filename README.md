@@ -1,4 +1,6 @@
-# Overview
+# Time-dependent BCS equation
+
+## Overview
 
 This is a Julia source code for simulating the time-dependent BCS equation, which is formulated in terms of Anderson pseudospins $\vec{\sigma}_k = (\sigma_k^1, \sigma_k^2, \sigma_k^3)$.
 
@@ -18,7 +20,7 @@ The code solves the time evolution of the pseudospins and gap function using the
 
 The model is a one-dimensional tight-binding model with the dispersion $\epsilon_k=-2t_{\rm hop}\cos k$. The interaction parameter is quenched at $t=0$: $V=V_i \to V_f$. The initial condition is given by an equilibrium state with temperature $T$.
 
-# Parameters
+## Parameters
 
 $V_i$: Initial interaction strength
 
