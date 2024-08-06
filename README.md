@@ -13,3 +13,6 @@ The gap function is determined self-consistently via
 $\Delta' + i\Delta'' = \frac{V}{N} \sum_k (\sigma_k^x + i\sigma_k^y)$.
 
 The code solves the time evolution of the pseudospins and gap function using the second-order implicit Runge-Kutta method.
+
+The model is a one-dimensional tight-binding model with the dispersion $\epsilon_k=-2\cos k$. The interaction parameter is quenched at $t=0$: $V=V_i \to V_f$. The initial condition is given by an equilibrium state with temperature $T$.
+
