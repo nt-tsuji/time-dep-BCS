@@ -79,7 +79,6 @@ function time_dep_BCS()
     # time evolution
     for it in 1:Nt
         t = it*dt;
-        t_list[it+1] = t;
         Δ[it+1] = Δ[it];
         σk[:,:,it+1] = σk[:,:,it];
         diff = 1.0;
@@ -96,9 +95,10 @@ function time_dep_BCS()
             Δ[it+1] = Δ_temp;
             iter += 1;
         end
-        iter_list[it+1] = iter;
+        t_list[it+1] = t;
         Δ_re[it+1] = real(Δ[it+1]);
         Δ_im[it+1] = imag(Δ[it+1]);
+        iter_list[it+1] = iter;
         E_tot[it+1] = 0.0;
         for ik in 1:Nk
             k = ik*dk;
