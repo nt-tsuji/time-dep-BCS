@@ -88,10 +88,8 @@ function time_dep_BCS()
             Δ_temp = 0.0;
             for ik in 1:Nk
                 k = ik*dk;
-                σk_temp = zeros(Float64,3);
-                σk_temp[:] = σk[:,ik,it] + dt*(bk(k,Δ[it])×σk[:,ik,it]+bk(k,Δ[it+1])×σk[:,ik,it+1]);
-                Δ_temp += σk_temp[1] + im*σk_temp[2];
-                σk[:,ik,it+1] = σk_temp[:];
+                σk[:,ik,it+1] = σk[:,ik,it] + dt*(bk(k,Δ[it])×σk[:,ik,it]+bk(k,Δ[it+1])×σk[:,ik,it+1]);
+                Δ_temp += σk[1,ik,it+1] + im*σk[2,ik,it+1];
             end
             Δ_temp = Δ_temp*Vf/Nk;
             diff = abs(Δ[it+1]-Δ_temp);
