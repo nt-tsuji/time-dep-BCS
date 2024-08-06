@@ -30,7 +30,7 @@ $t_{\rm hop}$: Hopping amplitude
 
 $T$: Initial temperature
 
-$N_k$: Number of k points
+$N_k$: Number of $k$ points
 
 $t_{\rm max}$: Maximum time
 
