@@ -1,6 +1,7 @@
 # one dimensional lattice, periodic boundary condition, U quench
 using LinearAlgebra, Plots
 
+Nt = 1000;
 t_list = zeros(Float64, Nt+1);
 Δ_re = zeros(Float64, Nt+1);
 Δ_im = zeros(Float64, Nt+1);
@@ -10,13 +11,12 @@ iter_list = zeros(Int16, Nt+1);
 function time_dep_BCS()
     # parameters
     Vi = 2.0;
-    Vf = 6.0;
+    Vf = 4.0;
     t_hop = 1.0;
     T = 0.05;
     Nk = 200;
     dk = 2.0*π/Nk;
     tmax = 50.0;
-    Nt = 1000;
     dt = tmax/Nt;
     tolerance = 0.000001;
 
@@ -38,8 +38,8 @@ function time_dep_BCS()
         return -2*t_hop*cos(k_)*τ3-Δ_*(τ1-im*τ2)/2-conj(Δ_)*(τ1+im*τ2)/2;
     end
 
-    # BdG Hamiltonian in the Pauli matrix bases
-    function hk(iμ_,k_,Δ_)
+    # Effective magnetic field
+    function bk(iμ_,k_,Δ_)
         if iμ_ == 1
             return -real(Δ_);
         elseif iμ_ == 2
@@ -103,7 +103,7 @@ function time_dep_BCS()
             σk[iμ,ik,1] = tr(f*Uk'*τμ[iμ]*Uk)/2;
         end
         for iμ in 1:3
-            E_tot[1] += real(hk(iμ,k,Δ[1])*σk[iμ,ik,1]);
+            E_tot[1] += real(bk(iμ,k,Δ[1])*σk[iμ,ik,1]);
         end
     end
     E_tot[1] = 2*E_tot[1]/Nk+abs2(Δ[1])/Vi;
@@ -133,8 +133,8 @@ function time_dep_BCS()
                         for iμ2 in 1:3
                             if ϵ_ijk(iμ1,iμ2,iμ3) != 0
                                 σk_temp[iμ1] += dt*ϵ_ijk(iμ1,iμ2,iμ3)*(
-                                    hk(iμ2,k,Δ[it])*σk[iμ3,ik,it]
-                                    +hk(iμ2,k,Δ[it+1])*σk[iμ3,ik,it+1]
+                                    bk(iμ2,k,Δ[it])*σk[iμ3,ik,it]
+                                    +bk(iμ2,k,Δ[it+1])*σk[iμ3,ik,it+1]
                                 );
                             end
                         end
@@ -157,7 +157,7 @@ function time_dep_BCS()
         for ik in 1:Nk
             k = ik*dk;
             for iμ in 1:3
-                E_tot[it+1] += real(hk(iμ,k,Δ[it+1])*σk[iμ,ik,it+1]);
+                E_tot[it+1] += real(bk(iμ,k,Δ[it+1])*σk[iμ,ik,it+1]);
             end
         end
         E_tot[it+1] = 2*E_tot[it+1]/Nk+abs2(Δ[it+1])/Vf;
