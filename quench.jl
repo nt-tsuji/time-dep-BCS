@@ -11,7 +11,7 @@ iter_list = zeros(Int16, Nt+1);
 function time_dep_BCS()
     # parameters
     Vi = 2.0;
-    Vf = 4.0;
+    Vf = 6.0;
     t_hop = 1.0;
     T = 0.05;
     Nk = 200;
