@@ -38,9 +38,7 @@ $N_t$: Number of time steps
 
 ## Author
 
-The code is maintained by
-
-* [Naoto Tsuji](https://github.com/nt-tsuji)
+Naoto Tsuji
 
 ## References
 
