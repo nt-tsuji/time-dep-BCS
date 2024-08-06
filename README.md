@@ -38,7 +38,7 @@ $N_t$: Number of time steps
 
 ## Author
 
-Naoto Tsuji
+Naoto Tsuji (University of Tokyo)
 
 ## References
 
