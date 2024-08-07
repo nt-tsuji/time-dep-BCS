@@ -71,7 +71,7 @@ function time_dep_BCS!(param::Param, output::Output)
     # initial pseudospin configuration
     E_tot = 0.0
     for ik in 1:param.Nk
-        k = ik*param.dk;
+        k = ik*param.dk
         Ek,Uk = eigen(hk(k,Δ[1]))
         f = diagm([1.0/(exp(Ek[1]/param.T)+1.0), 1.0/(exp(Ek[2]/param.T)+1.0)])
         for α in 1:3
@@ -106,7 +106,7 @@ function time_dep_BCS!(param::Param, output::Output)
         output.iter_list[it+1] = iter
         E_tot = 0.0
         for ik in 1:param.Nk
-            k = ik*param.dk;
+            k = ik*param.dk
             E_tot += bk(k,Δ[it+1])⋅σk[:,ik,it+1]
         end
         E_tot = 2.0*E_tot/param.Nk + abs2(Δ[it+1])/param.Vf
