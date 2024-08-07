@@ -38,7 +38,7 @@ function time_dep_BCS(param::Param, output::Output)
     τ1 = [0.  1.; 1.  0.]
     τ2 = [0. -im; im  0.]
     τ3 = [1.  0.; 0. -1.]
-    τ = [τ1,τ2,τ3]
+    τ = [τ1, τ2, τ3]
     
     # BdG Hamiltonian
     function hk(k::Float64, Δ::ComplexF64)
@@ -129,7 +129,7 @@ tolerance = 0.000001;
 
 param = Param(Nt, tmax, Vi, Vf, t_hop, T, Nk, tolerance);
 output = Output(param.Nt);
-time_dep_BCS(param, output)
+time_dep_BCS(param, output);
 
 fig_Delta = plot(output.t_list, [output.Δ_re, output.Δ_im], xlim=(0,param.tmax), ylim=(0,4), xlabel="t", label=["Re Δ" "Im Δ"])
 fig_E_tot = plot(output.t_list, output.E_tot, xlim=(0,param.tmax), ylim=(-1.5,-1.3), xlabel="t", label="E_tot")
