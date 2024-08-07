@@ -33,9 +33,9 @@ function time_dep_BCS!(param::Param, output::Output)
     σk = zeros(Float64, 3, param.Nk, param.Nt+1)
 
     # Pauli matrices
-    τ1 = [0.0 1.0; 1.0 0.0]
-    τ2 = [0.0 -im; im  0.0]
-    τ3 = [1.0 0.0; 0. -1.0]
+    τ1 = [0.0 1.0; 1.0  0.0]
+    τ2 = [0.0 -im; im   0.0]
+    τ3 = [1.0 0.0; 0.0 -1.0]
     τ = [τ1, τ2, τ3]
     
     # BdG Hamiltonian
