@@ -12,7 +12,7 @@ $\partial_t \vec{\sigma}_k = 2 \vec{b}_k \times \vec{\sigma}_k$,
 
 where $\vec{b}_k=(-\Delta', -\Delta'', \varepsilon_k)$ is an effective magnetic field acting on the pseudospins, $\Delta'$ and $\Delta''$ are the real and imaginary parts of the gap function, and $\varepsilon_k$ is the band dispersion.
 
-The gap function $\Delta=\frac{V}{N_k}\langle c_{k\uparrow}^\dagger c_{-k\downarrow}^\dagger \rangle$ is determined self-consistently at each time via
+The gap function $\Delta=\frac{V}{N_k}\sum_k \langle c_{k\uparrow}^\dagger c_{-k\downarrow}^\dagger \rangle$ is determined self-consistently at each time via
 
 $\Delta' + i\Delta'' = \frac{V}{N_k} \sum_k (\sigma_k^1 + i\sigma_k^2)$.
 
