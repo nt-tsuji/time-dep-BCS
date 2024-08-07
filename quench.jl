@@ -34,12 +34,12 @@ function time_dep_BCS()
     
     # BdG Hamiltonian
     function hk(k::Float64, Δ::ComplexF64)
-        return -2*t_hop*cos(k)*τ3-Δ*(τ1-im*τ2)/2-conj(Δ)*(τ1+im*τ2)/2;
+        return -2*t_hop*cos(k)*τ3 - Δ*(τ1-im*τ2)/2 - conj(Δ)*(τ1+im*τ2)/2;
     end
 
     # Effective magnetic field
     function bk(k::Float64, Δ::ComplexF64)
-        return [-real(Δ),-imag(Δ),-2*t_hop*cos(k)];
+        return [-real(Δ), -imag(Δ), -2*t_hop*cos(k)];
     end
 
     # equilibrium mean-field self-consistency
@@ -72,7 +72,7 @@ function time_dep_BCS()
         for α in 1:3
             σk[α,ik,1] = real(tr(f*Uk'*τ[α]*Uk)/2);
         end
-        E_tot[1] += real(bk(k,Δ[1])⋅σk[:,ik,1]);
+        E_tot[1] += bk(k,Δ[1])⋅σk[:,ik,1];
     end
     E_tot[1] = 2*E_tot[1]/Nk + abs2(Δ[1])/Vi;
 
@@ -102,7 +102,7 @@ function time_dep_BCS()
         E_tot[it+1] = 0.0;
         for ik in 1:Nk
             k = ik*dk;
-            E_tot[it+1] += real(bk(k,Δ[it+1])⋅σk[:,ik,it+1]);
+            E_tot[it+1] += bk(k,Δ[it+1])⋅σk[:,ik,it+1];
         end
         E_tot[it+1] = 2*E_tot[it+1]/Nk + abs2(Δ[it+1])/Vf;
     end
