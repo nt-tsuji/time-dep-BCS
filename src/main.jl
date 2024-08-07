@@ -3,7 +3,7 @@ include("time-dep-BCS.jl")
 Nt = 1000;
 tmax = 50.;
 Vi = 2.;
-Vf = 6.;
+Vf =6.;
 t_hop = 1.;
 T = 0.05;
 Nk = 200;

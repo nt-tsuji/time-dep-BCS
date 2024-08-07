@@ -10,6 +10,9 @@ struct Param
     T::Float64
     Nk::Int64
     tolerance::Float64
+    dk::Float64
+    dt::Float64
+    Param(Nt, tmax, Vi, Vf, t_hop, T, Nk, tolerance) = new(Nt, tmax, Vi, Vf, t_hop, T, Nk, tolerance, 2*π/Nk, tmax/Nt)
 end
 
 # output data
@@ -25,8 +28,8 @@ mutable struct Output
 end
 
 function time_dep_BCS!(param::Param, output::Output)
-    dk = 2*π/param.Nk
-    dt = param.tmax/param.Nt
+#    dk = 2*π/param.Nk
+#    dt = param.tmax/param.Nt
 
     # gap function
     Δ = zeros(ComplexF64, param.Nt+1)
@@ -57,7 +60,7 @@ function time_dep_BCS!(param::Param, output::Output)
     while diff > param.tolerance
         Δ_temp = 0.
         for ik in 1:param.Nk
-            k = ik*dk
+            k = ik*param.dk
             Ek,Uk = eigen(hk(k,Δ[1]))
             f = diagm([1/(exp(Ek[1]/param.T)+1.0), 1/(exp(Ek[2]/param.T)+1.0)])
             Δ_temp += tr(f*Uk'*(τ1+im*τ2)/2*Uk)
@@ -75,7 +78,7 @@ function time_dep_BCS!(param::Param, output::Output)
     # initial pseudospin configuration
     E_tot = 0.
     for ik in 1:param.Nk
-        k = ik*dk;
+        k = ik*param.dk;
         Ek,Uk = eigen(hk(k,Δ[1]))
         f = diagm([1/(exp(Ek[1]/param.T)+1.0), 1/(exp(Ek[2]/param.T)+1.0)])
         for α in 1:3
@@ -88,7 +91,7 @@ function time_dep_BCS!(param::Param, output::Output)
 
     # time evolution
     for it in 1:param.Nt
-        t = it*dt
+        t = it*param.dt
         Δ[it+1] = Δ[it]
         σk[:,:,it+1] = σk[:,:,it]
         diff = 1.
@@ -96,8 +99,8 @@ function time_dep_BCS!(param::Param, output::Output)
         while diff > param.tolerance
             Δ_temp = 0.
             for ik in 1:param.Nk
-                k = ik*dk
-                σk[:,ik,it+1] = σk[:,ik,it] + dt*(bk(k,Δ[it])×σk[:,ik,it]+bk(k,Δ[it+1])×σk[:,ik,it+1])
+                k = ik*param.dk
+                σk[:,ik,it+1] = σk[:,ik,it] + param.dt*(bk(k,Δ[it])×σk[:,ik,it]+bk(k,Δ[it+1])×σk[:,ik,it+1])
                 Δ_temp += σk[1,ik,it+1] + im*σk[2,ik,it+1]
             end
             Δ_temp = Δ_temp*param.Vf/param.Nk
@@ -111,7 +114,7 @@ function time_dep_BCS!(param::Param, output::Output)
         output.iter_list[it+1] = iter
         E_tot = 0.
         for ik in 1:param.Nk
-            k = ik*dk;
+            k = ik*param.dk;
             E_tot += bk(k,Δ[it+1])⋅σk[:,ik,it+1]
         end
         E_tot = 2*E_tot/param.Nk + abs2(Δ[it+1])/param.Vf
