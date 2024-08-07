@@ -4,7 +4,7 @@
 
 This is a Julia source code for simulating the time-dependent BCS equation, which is formulated in terms of Anderson pseudospins $\vec{\sigma}_k = (\sigma_k^1, \sigma_k^2, \sigma_k^3)$.
 
-The pseudospins are defined by $\sigma_k^\alpha = \frac{1}{2} \langle \psi_k^\dagger \tau^\alpha \psi_k \rangle$ with the Nambu spinor $\psi_k = (c$<sub>$k\uparrow$</sub>$, c^\dagger$<sub>$-k\downarrow$</sub>$)^T$ and Pauli matrices $\tau^\alpha$ ($\alpha=1,2,3$).
+The pseudospins are defined by $\sigma_k^\alpha = \frac{1}{2} \langle \psi_k^\dagger \tau^\alpha \psi_k \rangle$ with the Nambu spinor $\psi_k = (c$<sub>$k\uparrow$</sub>$, c_{-k\downarrow}^\dagger)^T$ and Pauli matrices $\tau^\alpha$ ($\alpha=1,2,3$).
 
 The equation for the time evolution is given by
 
@@ -12,7 +12,7 @@ $\partial_t \vec{\sigma}_k = 2 \vec{b}_k \times \vec{\sigma}_k$,
 
 where $\vec{b}_k=(-\Delta', -\Delta'', \varepsilon_k)$ is an effective magnetic field acting on the pseudospins, $\Delta'$ and $\Delta''$ are the real and imaginary parts of the gap function, and $\varepsilon_k$ is the band dispersion.
 
-The gap function is determined self-consistently via
+The gap function $\Delta=\frac{V}{N_k}\langle c_{k\uparrow}^\dagger c_{-k\downarrow}^\dagger \rangle$ is determined self-consistently at each time via
 
 $\Delta' + i\Delta'' = \frac{V}{N_k} \sum_k (\sigma_k^1 + i\sigma_k^2)$.
 
