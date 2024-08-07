@@ -22,15 +22,10 @@ mutable struct Output
     Δ_im::Array{Float64,1}
     E_tot::Array{Float64,1}
     iter_list::Array{Int16,1}
-    function Output(Nt::Int64)
-        new(zeros(Float64,Nt+1), zeros(Float64,Nt+1), zeros(Float64,Nt+1), zeros(Float64,Nt+1), zeros(Int64,Nt+1))
-    end
+    Output(Nt::Int64) = new(zeros(Float64,Nt+1), zeros(Float64,Nt+1), zeros(Float64,Nt+1), zeros(Float64,Nt+1), zeros(Int64,Nt+1))
 end
 
 function time_dep_BCS!(param::Param, output::Output)
-#    dk = 2*π/param.Nk
-#    dt = param.tmax/param.Nt
-
     # gap function
     Δ = zeros(ComplexF64, param.Nt+1)
     Δ[1] = 1.
