@@ -2,26 +2,26 @@ using LinearAlgebra, Plots
 
 # parameters
 struct Param
-    Nt::Int64
-    tmax::Float64
-    Vi::Float64
-    Vf::Float64
-    t_hop::Float64
-    T::Float64
-    Nk::Int64
-    tolerance::Float64
-    dk::Float64
-    dt::Float64
+    Nt::Int64           # number of time steps
+    tmax::Float64       # maximum time
+    Vi::Float64         # initial interaction strength
+    Vf::Float64         # final interaction strength
+    t_hop::Float64      # hopping amplitude
+    T::Float64          # initial temperature
+    Nk::Int64           # number of k points
+    tolerance::Float64  # tolerance of convergence
+    dk::Float64         # dk = 2π/Nk
+    dt::Float64         # dt = tmax/Nt
     Param(Nt, tmax, Vi, Vf, t_hop, T, Nk, tolerance) = new(Nt, tmax, Vi, Vf, t_hop, T, Nk, tolerance, 2*π/Nk, tmax/Nt)
 end
 
 # output data
 mutable struct Output
-    t_list::Array{Float64,1}
-    Δ_re::Array{Float64,1}
-    Δ_im::Array{Float64,1}
-    E_tot::Array{Float64,1}
-    iter_list::Array{Int16,1}
+    t_list::Array{Float64,1}   # list of time steps
+    Δ_re::Array{Float64,1}     # real part of the gap function
+    Δ_im::Array{Float64,1}     # imaginary part of the gap function
+    E_tot::Array{Float64,1}    # total energy
+    iter_list::Array{Int16,1}  # list of numbers of iterations
     Output(Nt::Int64) = new(zeros(Float64,Nt+1), zeros(Float64,Nt+1), zeros(Float64,Nt+1), zeros(Float64,Nt+1), zeros(Int64,Nt+1))
 end
 
