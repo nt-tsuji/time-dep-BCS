@@ -8,7 +8,7 @@ t_list = zeros(Float64, Nt+1);
 E_tot = zeros(Float64, Nt+1);
 iter_list = zeros(Int16, Nt+1);
 
-function time_dep_BCS()
+function time_dep_BCS(Nt::Int64, tmax::Float64)
     # parameters
     Vi = 2.;
     Vf = 6.;
@@ -108,7 +108,7 @@ function time_dep_BCS()
     end
 end
 
-time_dep_BCS()
+time_dep_BCS(Nt, tmax)
 
 fig_Delta = plot(t_list,[Δ_re,Δ_im],xlim=(0,tmax),ylim=(0,4),xlabel="t",ylabel="Δ",label=["Re Δ" "Im Δ"])
 fig_E_tot = plot(t_list,E_tot,xlim=(0,tmax),ylim=(-1.5,-1.3),xlabel="t",ylabel="E",label="E_tot")
