@@ -38,7 +38,8 @@ $N_t$: Number of time steps
 
 ## Example
 
-$V_i=2, V_f=6, t_{\rm hop}=1, T=0.05, N_k=200, t_{\rm max}=50, N_t=1000$
+Time evolution of the gap function $\Delta$ for the parameters,
+$V_i=2, V_f=6, t_{\rm hop}=1, T=0.05, N_k=200, t_{\rm max}=50, N_t=1000$.
 
 ![Delta](fig/Delta.png)
 
