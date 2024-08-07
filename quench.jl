@@ -12,6 +12,7 @@ struct Param
     tolerance::Float64
 end
 
+# output data
 mutable struct Output
     t_list::Array{Float64,1}
     Δ_re::Array{Float64,1}
