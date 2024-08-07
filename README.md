@@ -4,7 +4,7 @@
 
 This is a Julia source code for simulating the time-dependent BCS equation, which is formulated in terms of Anderson pseudospins $\vec{\sigma}_k = (\sigma_k^1, \sigma_k^2, \sigma_k^3)$.
 
-The pseudospins are defined by $\sigma_k^\alpha = \frac{1}{2} \langle \psi_k^\dagger \tau^\alpha \psi_k \rangle$ with the Nambu spinor $\psi_k = (c$<sub>$k\uparrow$</sub>$, c_{-k\downarrow}^\dagger)^T$ and Pauli matrices $\tau^\alpha$ ($\alpha=1,2,3$).
+The pseudospins are defined by $\sigma_k^\alpha = \frac{1}{2} \langle \psi_k^\dagger \tau^\alpha \psi_k \rangle$ with the Nambu spinor $\psi_k = (c_{k\uparrow}, c_{-k\downarrow}^\dagger)^T$ and Pauli matrices $\tau^\alpha$ ($\alpha=1,2,3$).
 
 The equation for the time evolution is given by
 
