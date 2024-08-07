@@ -1,7 +1,7 @@
 using LinearAlgebra, Plots
 
 Nt = 1000;
-tmax = 50.0;
+tmax = 50.;
 t_list = zeros(Float64, Nt+1);
 Δ_re = zeros(Float64, Nt+1);
 Δ_im = zeros(Float64, Nt+1);
@@ -10,26 +10,26 @@ iter_list = zeros(Int16, Nt+1);
 
 function time_dep_BCS()
     # parameters
-    Vi = 2.0;
-    Vf = 6.0;
-    t_hop = 1.0;
+    Vi = 2.;
+    Vf = 6.;
+    t_hop = 1.;
     T = 0.05;
     Nk = 200;
-    dk = 2.0*π/Nk;
+    dk = 2*π/Nk;
     dt = tmax/Nt;
     tolerance = 0.000001;
 
     # gap function
     Δ = zeros(ComplexF64, Nt+1);
-    Δ[1] = 1.0;
+    Δ[1] = 1.;
 
     # pseudospin
     σk = zeros(Float64, 3, Nk, Nt+1);
 
     # Pauli matrices
-    τ1 = [0 1; 1 0];
-    τ2 = [0 -im; im 0];
-    τ3 = [1 0; 0 -1];
+    τ1 = [0.  1.; 1.  0.];
+    τ2 = [0. -im; im  0.];
+    τ3 = [1.  0.; 0. -1.];
     τ = [τ1,τ2,τ3];
     
     # BdG Hamiltonian
