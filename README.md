@@ -16,7 +16,7 @@ The gap function $\Delta=\frac{V}{N_k}\sum_k \langle c_{k\uparrow}^\dagger c_{-k
 
 $\Delta' + i\Delta'' = \frac{V}{N_k} \sum_k (\sigma_k^1 + i\sigma_k^2)$.
 
-The code solves the time evolution of the pseudospins and gap function using the second-order ([time_dep_BCS_RK2.jl](src/time-dep-BCS-RK2.jl)) and fourth-order (time_dep_BCS_RK4.jl) implicit Runge-Kutta method.
+The code solves the time evolution of the pseudospins and gap function using the second-order ([time-dep-BCS-RK2.jl](src/time-dep-BCS-RK2.jl)) and fourth-order (time_dep_BCS_RK4.jl) implicit Runge-Kutta method.
 
 The model is a one-dimensional tight-binding model with the dispersion $\varepsilon_k=-2t_{\rm hop}\cos k$. The interaction parameter is quenched at $t=0$: $V=V_i \to V_f$. The initial condition is given by an equilibrium state with temperature $T$.
 
