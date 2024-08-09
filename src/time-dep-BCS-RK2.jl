@@ -71,6 +71,7 @@ function time_dep_BCS_RK2!(param::Param, output::Output)
             Δ_temp = 0.0
             for ik in 1:param.Nk
                 k = ik*param.dk
+                # trapezoid on (t, t+Δt)
                 σk[:,ik,it+1] = σk[:,ik,it] + param.dt*(bk(k,Δ[it])×σk[:,ik,it]+bk(k,Δ[it+1])×σk[:,ik,it+1])
                 Δ_temp += σk[1,ik,it+1] + im*σk[2,ik,it+1]
             end
