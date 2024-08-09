@@ -60,7 +60,7 @@ function time_dep_BCS_RK4!(param::Param, output::Output)
     E_tot = 2.0*E_tot[1]/param.Nk + abs2(Δ[1])/param.Vi
     output.E_tot[1] = E_tot
 
-    # time evolution
+    # time evolution from t=0 to 2*Δt
     Δ[2] = Δ[1]
     Δ[3] = Δ[1]
     σk[:,:,2] = σk[:,:,1]
@@ -108,7 +108,8 @@ function time_dep_BCS_RK4!(param::Param, output::Output)
     E_tot3 = 2.0*E_tot3/param.Nk + abs2(Δ[3])/param.Vf
     output.E_tot[2] = E_tot2
     output.E_tot[3] = E_tot3
-
+    
+    # time evolution from t to t+Δt
     for it in 3:param.Nt
         t = it*param.dt
         Δ[it+1] = Δ[it]
