@@ -8,17 +8,20 @@ tmax = 50.0
 Vi = 2.0
 Vf = 6.0
 t_hop = 1.0
+μ = 0.0
 T = 0.05
 Nk = 200
 tolerance = 0.000001
 
-param = Param(Nt, tmax, Vi, Vf, t_hop, T, Nk, tolerance)
+param = Param(Nt, tmax, Vi, Vf, t_hop, μ, T, Nk, tolerance)
 output = Output(param.Nt)
 time_dep_BCS_RK2!(param, output)
 # time_dep_BCS_RK4!(param, output)
 
 fig_Delta = plot(output.t_list, [real(output.Δ), imag(output.Δ)], xlim=(0,param.tmax), ylim=(0,4), xlabel="t", label=["Re Δ" "Im Δ"])
 fig_E_tot = plot(output.t_list, output.E_tot, xlim=(0,param.tmax), ylim=(-1.4,-1.395), xlabel="t", label="E_tot")
+fig_N_tot = plot(output.t_list, output.N_tot, xlim=(0,param.tmax), ylim=(0,2), xlabel="t", label="N_tot")
 
 savefig(fig_Delta,"Delta.png")
 savefig(fig_E_tot,"E_tot.png")
+savefig(fig_N_tot,"N_tot.png")

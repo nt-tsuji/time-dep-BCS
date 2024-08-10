@@ -18,12 +18,12 @@ function time_dep_BCS_RK4!(param::Param, output::Output)
     
     # BdG Hamiltonian
     function hk(k::Float64, Δ::ComplexF64)
-        return -2.0*param.t_hop*cos(k)*τ3 - Δ*(τ1-im*τ2)/2.0 - conj(Δ)*(τ1+im*τ2)/2.0
+        return (-2.0*param.t_hop*cos(k)-param.μ)*τ3 - Δ*(τ1-im*τ2)/2.0 - conj(Δ)*(τ1+im*τ2)/2.0
     end
 
     # Effective magnetic field
     function bk(k::Float64, Δ::ComplexF64)
-        return [-real(Δ), -imag(Δ), -2.0*param.t_hop*cos(k)]
+        return [-real(Δ), -imag(Δ), -2.0*param.t_hop*cos(k)-param.μ]
     end
 
     # equilibrium mean-field self-consistency
@@ -48,6 +48,7 @@ function time_dep_BCS_RK4!(param::Param, output::Output)
 
     # initial pseudospin configuration
     E_tot = 0.0
+    N_tot = 0.0
     for ik in 1:param.Nk
         k = ik*param.dk
         Ek,Uk = eigen(hk(k,Δ[1]))
@@ -56,9 +57,12 @@ function time_dep_BCS_RK4!(param::Param, output::Output)
             σk[α,ik,1] = real(tr(f*Uk'*τ[α]*Uk)/2.0)
         end
         E_tot += bk(k,Δ[1])⋅σk[:,ik,1]
+        N_tot += σk[3,ik,1]
     end
     E_tot = 2.0*E_tot[1]/param.Nk + abs2(Δ[1])/param.Vi
+    N_tot = N_tot/param.Nk + 1.0
     output.E_tot[1] = E_tot
+    output.N_tot[1] = N_tot
 
     # time evolution from t=0 to 2*Δt
     Δ[2] = Δ[1]
@@ -99,15 +103,23 @@ function time_dep_BCS_RK4!(param::Param, output::Output)
     output.iter_list[3] = iter
     E_tot2 = 0.0
     E_tot3 = 0.0
+    N_tot2 = 0.0
+    N_tot3 = 0.0
     for ik in 1:param.Nk
         k = ik*param.dk
         E_tot2 += bk(k,Δ[2])⋅σk[:,ik,2]
         E_tot3 += bk(k,Δ[3])⋅σk[:,ik,3]
+        N_tot2 += σk[3,ik,2]
+        N_tot3 += σk[3,ik,3]
     end
     E_tot2 = 2.0*E_tot2/param.Nk + abs2(Δ[2])/param.Vf
     E_tot3 = 2.0*E_tot3/param.Nk + abs2(Δ[3])/param.Vf
+    N_tot2 = N_tot2/param.Nk + 1.0
+    N_tot3 = N_tot3/param.Nk + 1.0
     output.E_tot[2] = E_tot2
     output.E_tot[3] = E_tot3
+    output.N_tot[2] = N_tot2
+    output.N_tot[3] = N_tot3
     
     # time evolution from t to t+Δt
     for it in 3:param.Nt
@@ -163,11 +175,15 @@ function time_dep_BCS_RK4!(param::Param, output::Output)
         output.Δ[it+1] = Δ[it+1]
         output.iter_list[it+1] = iter
         E_tot = 0.0
+        N_tot = 0.0
         for ik in 1:param.Nk
             k = ik*param.dk
             E_tot += bk(k,Δ[it+1])⋅σk[:,ik,it+1]
+            N_tot += σk[3,ik,it+1]
         end
         E_tot = 2.0*E_tot/param.Nk + abs2(Δ[it+1])/param.Vf
+        N_tot = N_tot/param.Nk + 1.0
         output.E_tot[it+1] = E_tot
+        output.N_tot[it+1] = N_tot
     end
 end
