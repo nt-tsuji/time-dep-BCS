@@ -65,10 +65,10 @@ function time_dep_BCS_RK4!(param::Param, output::Output)
     output.N_tot[1] = N_tot
 
     # time evolution from t=0 to 2*Δt
-    Δ[2] = Δ[1]
-    Δ[3] = Δ[1]
-    σk[:,:,2] = σk[:,:,1]
-    σk[:,:,3] = σk[:,:,1]
+    for it in 1:2
+        Δ[it+1] = Δ[1]
+        σk[:,:,it+1] = σk[:,:,1]
+    end
     diff = 1.0
     iter = 0
     while diff > param.tolerance
@@ -95,31 +95,22 @@ function time_dep_BCS_RK4!(param::Param, output::Output)
         Δ[3] = Δ_temp3
         iter += 1
     end
-    output.t_list[2] = param.dt
-    output.t_list[3] = 2.0*param.dt
-    output.Δ[2] = Δ[2]
-    output.Δ[3] = Δ[3]
-    output.iter_list[2] = iter
-    output.iter_list[3] = iter
-    E_tot2 = 0.0
-    E_tot3 = 0.0
-    N_tot2 = 0.0
-    N_tot3 = 0.0
-    for ik in 1:param.Nk
-        k = ik*param.dk
-        E_tot2 += bk(k,Δ[2])⋅σk[:,ik,2]
-        E_tot3 += bk(k,Δ[3])⋅σk[:,ik,3]
-        N_tot2 += σk[3,ik,2]
-        N_tot3 += σk[3,ik,3]
+    for it in 1:2
+        output.t_list[it+1] = it*param.dt
+        output.Δ[it+1] = Δ[it+1]
+        output.iter_list[it+1] = iter
+        E_tot = 0.0
+        N_tot = 0.0
+        for ik in 1:param.Nk
+            k = ik*param.dk
+            E_tot += bk(k,Δ[it+1])⋅σk[:,ik,it+1]
+            N_tot += σk[3,ik,it+1]
+        end
+        E_tot = 2.0*E_tot/param.Nk + abs2(Δ[it+1])/param.Vf
+        N_tot = N_tot/param.Nk + 1.0
+        output.E_tot[it+1] = E_tot
+        output.N_tot[it+1] = N_tot
     end
-    E_tot2 = 2.0*E_tot2/param.Nk + abs2(Δ[2])/param.Vf
-    E_tot3 = 2.0*E_tot3/param.Nk + abs2(Δ[3])/param.Vf
-    N_tot2 = N_tot2/param.Nk + 1.0
-    N_tot3 = N_tot3/param.Nk + 1.0
-    output.E_tot[2] = E_tot2
-    output.E_tot[3] = E_tot3
-    output.N_tot[2] = N_tot2
-    output.N_tot[3] = N_tot3
     
     # time evolution from t to t+Δt
     for it in 3:param.Nt
