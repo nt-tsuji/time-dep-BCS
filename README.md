@@ -4,7 +4,7 @@
 
 This is a Julia source code for simulating the time-dependent BCS equation, which is formulated in terms of Anderson pseudospins $\vec{\sigma}_k = (\sigma_k^1, \sigma_k^2, \sigma_k^3)$.
 
-The pseudospins are defined by $\sigma_k^\alpha = \frac{1}{2} \langle \psi_k^\dagger \tau^\alpha \psi_k \rangle$ with the Nambu spinor $\psi_k = (c_{k\uparrow}, c_{-k\downarrow}^\dagger)^T$ and Pauli matrices $\tau^\alpha$ ($\alpha=1,2,3$).
+The pseudospins are defined by $\sigma_k^\alpha = \frac{1}{2} \langle \psi_k^\dagger \tau^\alpha \psi_k \rangle$ for each momentum $k$ with the Nambu spinor $\psi_k = (c_{k\uparrow}, c_{-k\downarrow}^\dagger)^T$ and Pauli matrices $\tau^\alpha$ ($\alpha=1,2,3$).
 
 The equation for the time evolution is given by
 
@@ -16,7 +16,7 @@ The gap function $\Delta=\frac{V}{N_k}\sum_k \langle c_{k\uparrow}^\dagger c_{-k
 
 $\Delta' + i\Delta'' = \frac{V}{N_k} \sum_k (\sigma_k^1 + i\sigma_k^2)$.
 
-The code solves the time evolution of the pseudospins and gap function using the second-order ([time-dep-BCS-RK2.jl](src/time-dep-BCS-RK2.jl)) and fourth-order ([time-dep-BCS-RK4.jl](src/time-dep-BCS-RK4.jl)) implicit Runge-Kutta method.
+The code solves the time evolution of the pseudospins and gap function using the second-order ([time-dep-BCS-RK2.jl](src/time-dep-BCS-RK2.jl)) and fourth-order ([time-dep-BCS-RK4.jl](src/time-dep-BCS-RK4.jl)) implicit Runge-Kutta methods.
 
 The model is a one-dimensional tight-binding model with the dispersion $\varepsilon_k=-2t_{\rm hop}\cos k-\mu$. The interaction parameter is quenched at $t=0$: $V=V_i \to V_f$. The initial condition is given by an equilibrium state with temperature $T$.
 
